@@ -17,6 +17,7 @@ jobs:
     - name: preinstall
       run: |
            # sudo apt-get install libboost1.65-all-dev libssl-dev
+           brew reinstall openssl
            # git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
            # git checkout ndn-cxx-0.7.0
            # ./waf configure && ./waf && sudo ./waf install && cd ..
