@@ -39,7 +39,7 @@ git clone https://github.com/zeutro/openabe.git && cd openabe
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo ldconfig ; fi
   # - ndnsec-key-gen test
   # - sudo nfd start -c /usr/local/etc/ndn/nfd.conf.sample &
-install:
+install: 
   - ./waf configure --with-tests
   - ./waf
   - sudo ./waf install
