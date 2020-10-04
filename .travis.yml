@@ -8,6 +8,7 @@ matrix:
       name: bionic linux, python3.6
       compiler:
         - gcc
+        - g++
 
 before_install:
   - echo $LANG
