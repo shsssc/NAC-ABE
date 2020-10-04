@@ -1,7 +1,7 @@
 sudo: true
 merge_mode: replace   # for custom builds
 language: cpp
-# matrix:
+matrix:
 #   include:
 #     - os: linux
 #       dist: bionic
