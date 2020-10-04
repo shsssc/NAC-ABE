@@ -6,6 +6,8 @@ matrix:
     - os: linux
       dist: bionic
       name: bionic linux, python3.6
+      compiler:
+        - g++
 
 before_install:
   - echo $LANG
