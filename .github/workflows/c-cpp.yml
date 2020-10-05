@@ -20,17 +20,11 @@ jobs:
        echo $LC_ALL
        sudo apt-get install -y flex libboost1.65-all-dev libsqlite3-dev libssl-dev
     
-      # - git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
-      # - git checkout ndn-cxx-0.7.0
-      # - ./waf configure && ./waf && sudo ./waf install && cd ..
-      # - git clone https://github.com/named-data/NFD.git && cd NFD
-    
-      # manually install relic
        wget --no-check-certificate https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/relic-toolkit/relic-0.3.5.tar.gz
        tar -xf relic-0.3.5.tar.gz && cd relic-0.3.5
        cmake CMakeLists.txt
        make
-      # - make test
+
        sudo make install
        cd ..
     
