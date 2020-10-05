@@ -30,6 +30,7 @@ before_install:
   - sudo make install
   - cd ..
   - sudo apt-get install libssl-dev
+  - sudo apt remove -y bison
   - wget https://github.com/yufengzh/openabe/releases/download/1.0/libopenabe-1.0.0-linux-skip-cert-check.tar.gz
   - tar -xf libopenabe-1.0.0-linux-skip-cert-check.tar.gz && cd libopenabe-1.0.0-linux-skip-cert-check
 #  - git clone https://github.com/zeutro/openabe.git && cd openabe
