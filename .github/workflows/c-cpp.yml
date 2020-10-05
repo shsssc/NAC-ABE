@@ -16,33 +16,32 @@ jobs:
 
     - name: preinstall
       run: |
-          sudo apt-get install -y libsqlite3-dev libboost1.65-all-dev libssl-dev
-          
-          # install flex
-          sudo apt-get install -y texinfo help2man
-          git clone https://github.com/westes/flex.git && cd flex
-          ./autogen.sh
-          ./configure
-          make
-          sudo make install
-          cd ..
-
-           wget https://github.com/yufengzh/NAC-ABE/releases/download/v1.0/libopenabe-1.0.0-linux.tar.gz
-           tar -xf libopenabe-1.0.0-linux.tar.gz && cd libopenabe-1.0.0-linux
-           #git clone https://github.com/zeutro/openabe.git && cd openabe
-           . ./env
-           ./deps/install_pkgs.sh
-           make && make test && sudo -E make install && cd ..
-
-          #  git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
-          #  git checkout ndn-cxx-0.7.0
-          #  ./waf configure && ./waf && sudo ./waf install && cd ..
-          #  git clone https://github.com/named-data/NFD.git && cd NFD
-          #  git checkout NFD-0.7.0
-          #  ./waf configure --without-libpcap --without-websocket && ./waf && sudo ./waf install && cd ..
-           ldconfig
-           ndnsec-key-gen test
-           sudo nfd start -c /usr/local/etc/ndn/nfd.conf.sample &
+       echo $LANG
+       echo $LC_ALL
+       sudo apt-get install -y flex libboost1.65-all-dev libsqlite3-dev libssl-dev
+    
+      # - git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
+      # - git checkout ndn-cxx-0.7.0
+      # - ./waf configure && ./waf && sudo ./waf install && cd ..
+      # - git clone https://github.com/named-data/NFD.git && cd NFD
+    
+      # manually install relic
+       wget --no-check-certificate https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/relic-toolkit/relic-0.3.5.tar.gz
+       tar -xf relic-0.3.5.tar.gz && cd relic-0.3.5
+       cmake CMakeLists.txt
+       make
+      # - make test
+       sudo make install
+       cd ..
+    
+       wget https://github.com/yufengzh/NAC-ABE/releases/download/v1.0/libopenabe-1.0.0-linux.tar.gz
+       tar -xf libopenabe-1.0.0-linux.tar.gz && cd libopenabe-1.0.0-linux
+       sudo -E ./deps/install_pkgs.sh
+       . ./env
+       make && make test && sudo -E make install && cd ..
+    
+       sudo ldconfig
+       ndnsec-key-gen test
            
     - name: install
       run: ./waf configure --with-tests
