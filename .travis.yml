@@ -20,6 +20,7 @@ before_install:
   - cd libopenabe-1.0.0-linux/
   - . ./env
   - make && sudo make install
+  - ldconfig
   - cd ..
   - wget http://hms.isi.jhu.edu/acsc/cpabe/libbswabe-0.9.tar.gz
   - tar xzvf libbswabe-0.9.tar.gz
