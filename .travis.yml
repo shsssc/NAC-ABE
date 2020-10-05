@@ -23,7 +23,7 @@ before_install:
 #  - git checkout NFD-0.7.0
 #  - ./waf configure --without-libpcap --without-websocket && ./waf && sudo ./waf install && cd ..
   - wget https://github.com/yufengzh/openabe/releases/download/1.0/libopenabe-1.0.0-linux-skip-cert-check.tar.gz
-  - tar -xf libopenabe-1.0.0-linux.tar.gz && cd libopenabe-1.0.0-linux
+  - tar -xf libopenabe-1.0.0-linux-skip-cert-check.tar.gz && cd libopenabe-1.0.0-linux-skip-cert-check
 #  - git clone https://github.com/zeutro/openabe.git && cd openabe
 #   - git clone https://github.com/yufengzh/openabe.git && cd openabe
   - sudo -E ./deps/install_pkgs.sh
