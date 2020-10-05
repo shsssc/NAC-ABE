@@ -37,5 +37,7 @@ install:
   - ./waf configure --with-tests
   - ./waf
   - sudo ./waf install
+  - sudo ldconfig
 script:
-  - ./build/unit-tests
+  - cd ./build
+  - ./unit-tests
