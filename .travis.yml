@@ -1,5 +1,5 @@
 sudo: true
-merge_mode: replace   # for custom builds
+merge_mode: replace
 language: cpp
 matrix:
   include:
@@ -7,49 +7,30 @@ matrix:
       dist: bionic
       name: bionic linux, python3.6
       compiler:
-        - g++
-      addons:
-        apt:
-          sources:
-          - ubuntu-toolchain-r-test
-          packages:
-          - flex
-          - autoconf
-          - bison
-          - gcc-6
-          - libsqlite3-dev
-          - libboost1.65-all-dev
-          - libssl-dev
-          # - help2man
-          # - lzip
-          # - texinfo
-          # - texlive
+        - clang
 
-before_install:  
+before_install:
   - echo $LANG
   - echo $LC_ALL
-#  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install libboost1.65-all-dev libssl-dev  ; fi
-#  - git clone https://github.com/named-data/NFD.git && cd NFD
-#  - git checkout NFD-0.7.0
-#  - ./waf configure --without-libpcap --without-websocket && ./waf && sudo ./waf install && cd ..
-#  - sudo apt-get install -y libsqlite3-dev libboost1.65-all-dev libssl-dev
+  - sudo apt-get install -y flex libboost1.65-all-dev libsqlite3-dev libssl-dev
 
-   - wget https://github.com/yufengzh/NAC-ABE/releases/download/v1.0/libopenabe-1.0.0-linux.tar.gz
-   - tar -xf libopenabe-1.0.0-linux.tar.gz && cd libopenabe-1.0.0-linux
-   - sudo -E ./deps/install_pkgs.sh
-   - . ./env
-   - make && make test && sudo -E make install && cd ..
+  - git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
+  - git checkout ndn-cxx-0.7.0
+  - ./waf configure && ./waf && sudo ./waf install && cd ..
+  - git clone https://github.com/named-data/NFD.git && cd NFD
 
-   - git clone https://github.com/named-data/ndn-cxx.git && cd ndn-cxx
-   - git checkout ndn-cxx-0.7.0
-   - ./waf configure && ./waf && sudo ./waf install && cd ..
+  - wget https://github.com/yufengzh/NAC-ABE/releases/download/v1.0/libopenabe-1.0.0-linux.tar.gz
+  - tar -xf libopenabe-1.0.0-linux.tar.gz && cd libopenabe-1.0.0-linux
+  - sudo -E ./deps/install_pkgs.sh
+  - . ./env
+  - make && make test && sudo -E make install && cd ..
 
-   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo ldconfig ; fi
-   - ndnsec-key-gen test
-   - sudo nfd start -c /usr/local/etc/ndn/nfd.conf.sample &
+  - sudo ldconfig
+  - ndnsec-key-gen test
+
 install:
-   - ./waf configure --with-tests
-   - ./waf
-   - sudo ./waf install
+  - ./waf configure --with-tests
+  - ./waf
+  - sudo ./waf install
 script:
-   - ./build/unit-tests
+  - ./build/unit-tests
