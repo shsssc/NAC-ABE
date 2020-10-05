@@ -2,17 +2,11 @@ sudo: true
 merge_mode: replace   # for custom builds
 language: cpp
 matrix:
-#   include:
-#     - os: linux
-#       dist: bionic
-#       name: bionic linux, python3.6
-#       compiler:
-#         - clang
-include:
-  - os: osx
-    osx_image: xcode10.1
-    name: osx
-    compiler:
+  include:
+    - os: linux
+      dist: bionic
+      name: bionic linux, python3.6
+      compiler:
         - clang
 
 before_install:
