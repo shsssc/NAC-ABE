@@ -8,8 +8,8 @@ matrix:
       name: bionic linux, python3.6
 
 before_install:
-  - apt update
-  - apt install -y g++ pkg-config python3-minimal libboost-all-dev libssl-dev libsqlite3-dev cmake build-essential bison byacc flex libgmp3-dev
+  - sudo apt-get update
+  - sudo apt-get install -y g++ pkg-config python3-minimal libboost-all-dev libssl-dev libsqlite3-dev cmake build-essential bison byacc flex libgmp3-dev
   - git clone https://github.com/named-data/ndn-cxx
   - cd ndn-cxx/
   - git checkout ndn-cxx-0.7.0
